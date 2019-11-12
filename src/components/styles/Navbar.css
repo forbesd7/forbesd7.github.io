@@ -1,0 +1,11 @@
+#NavbarLayout {
+    height:8vw;
+    background-color:black;
+    display:flex;
+    text-align:center;
+    justify-content: center;
+}
+.bear {
+    width:15vw;
+    height:8vw;
+}
