@@ -19,5 +19,5 @@ You will also see any lint errors in the console.
 ### `yarn build`
 Builds the downloadable file for the electron app to the `dist` folder for React.<br />
 
-ALso builds the app for production to the `build` folder for React.<br />
+Also builds the app for production to the `build` folder for React.<br />
 
