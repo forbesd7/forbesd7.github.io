@@ -3,15 +3,34 @@ import './components/styles/App.css';
 import MainView from './components/MainView'
 import Navbar from './components/Navbar'
 import NewListView from './components/NewListView'
-import AllLists from './components/AllLists'
-import CurList from './components/CurList'
+
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      habitList: [],
-      currentView: "main"
+      createdHabitLists: [],
+      currentView: "main",
+      time: new Date(),
+      
+    }
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+      clearInterval(this.timerID);
+  }
+
+  tick = ()=> {
+    this.setState({
+      time: new Date()
+    });
+
+    if(this.state.time.toLocaleTimeString() === "5:21:55 PM") {
+      const notify = new Notification('hi')
     }
   }
 
@@ -24,83 +43,40 @@ export default class App extends Component {
     this.setState({currentView: "main"})
   }
 
-  allListsChanger = e => {
-    this.setState({currentView: "allLists"})
-  }
+  saveList = (list) => {
+    let curList = this.state.createdHabitLists;
+    curList.push(list);
+    console.log(curList);
+    this.setState({createdHabitLists: curList})
+    console.log(this.state);
+}
 
-  curListChanger = e => {
-    this.setState({currentView: "curList"})
-  }
+  
   
   render() {
+
     let viewRenderer;
     if(this.state.currentView === 'main') {
       viewRenderer = <MainView 
       newListViewChanger={this.newListViewChanger}
       allListsChanger= {this.allListsChanger}
+      createdHabitLists={this.state.createdHabitLists}
+      time={this.state.time.toLocaleTimeString()}
       />
     } else if(this.state.currentView === 'newList') {
-      viewRenderer = <NewListView />
-    } else if(this.state.currentView === 'allLists') {
-      viewRenderer = <AllLists curListChanger={this.curListChanger}/>
-    } else if (this.state.currentView === 'curList') {
-      viewRenderer = <CurList />
+      viewRenderer = <NewListView time={this.state.time.toLocaleTimeString()} saveList={this.saveList} mainViewChanger={this.mainViewChanger}/>
     }
+
+
     return (
       <div className="App">
         <Navbar 
         mainViewChanger={this.mainViewChanger}
+        time={this.state.time.toLocaleTimeString()}
         />
         {viewRenderer}
       </div>
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { Component } from 'react';
-// import './App.css';
-// import Axios from 'axios'
-
-// export default class App extends Component {
-
-//   state = {
-//     posts: []
-//   }
-//   componentDidMount() {
-
-//     Axios.get("https://reddit.com/r/aww.json")
-//     .then(response => {
-//       this.setState({
-//         posts: response.data.data.children
-//       })
-//       console.log(response.data.data.children)
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     })
-//   }
-//   render() {
-//     return (
-//       <div className="App">
-//       <ul> 
-//         {this.state.posts.map(post => 
-//            <li key={post.data.id} className="list-group-item flex-container">{post.data.title}</li>
-//         )}
-        
-//       </ul>
-//       </div>
-//     );
-//   }
-// }
 
