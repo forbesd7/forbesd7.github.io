@@ -5,12 +5,7 @@
     align-items: center;
 }
 
-.habitText {
-    margin-botton: 10px;
-    background-color:black;
-    border: green 2px solid;
-    color:#ececeb;
-}
+
 .habitPlus {
     height:4vw;
     width:4vw;
@@ -23,6 +18,7 @@
 .habitContainer {
     display:flex;
     flex-direction: column;
+    width:100%;
 }
 
 #habitAdder {
@@ -30,6 +26,7 @@
     width: 100%;
     justify-content: center;
     align-items: center;
+    border-bottom: #23374d 2px solid;
 }
 
 .addText {
@@ -60,14 +57,15 @@
     text-transform: uppercase;
     text-decoration: none;
     background: #ececeb;
-    height: 100%;
-    font-size:1.5vw;
-    margin-top:5%;
+    height: 5vw;
+    font-size:2vw;
+    margin-top: 7%;
     padding: 20px;
     border-radius: 5px;
     display: inline-block;
     border: none;
     transition: all 0.4s ease 0s;
+    margin-bottom:3%;
     }
 
 .button:hover {
