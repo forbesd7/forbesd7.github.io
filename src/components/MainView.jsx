@@ -19,7 +19,7 @@ export default class App extends Component {
         })
         return (
             <div className="mainViewContainer">
-                <div className="mainViewTitle">Fix your shi*.</div>
+                <div className="mainViewTitle">Habitify your life.</div>
                 <button className="makeButton" onClick={this.props.newListViewChanger}>Make a new habit</button>
                 <div className="habitLister">{habitLists}</div>
             </div>
